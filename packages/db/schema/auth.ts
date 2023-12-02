@@ -10,6 +10,7 @@ import {
 } from "drizzle-orm/mysql-core";
 
 import { mySqlTable } from "./_table";
+import { lobby } from "./lobby";
 
 export const users = mySqlTable("user", {
   id: varchar("id", { length: 255 }).notNull().primaryKey(),
@@ -20,6 +21,7 @@ export const users = mySqlTable("user", {
     fsp: 3,
   }).default(sql`CURRENT_TIMESTAMP(3)`),
   image: varchar("image", { length: 255 }),
+  lobbyId: int("lobbyId"),
 });
 
 export const usersRelations = relations(users, ({ many }) => ({
